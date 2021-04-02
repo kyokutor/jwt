@@ -4,9 +4,11 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTCreator;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Calendar;
 import java.util.Map;
+import java.util.logging.Logger;
 
 /**
  * @author Xu dong  ren
@@ -39,7 +41,11 @@ public class JWTUtils {
      * 验证token
      */
     public static void TokenVerify(String token) {
-        JWT.require(Algorithm.HMAC256(SIGN)).build().verify(token);
+        try {
+            JWT.require(Algorithm.HMAC256(SIGN)).build().verify(token);
+        }catch (Exception e){
+
+        }
     }
 
     /**
